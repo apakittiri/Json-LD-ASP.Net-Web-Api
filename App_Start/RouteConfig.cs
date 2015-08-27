@@ -13,6 +13,9 @@ namespace NetWebApi_Json_LD
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("WorkerImport");
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
