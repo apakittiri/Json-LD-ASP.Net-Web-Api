@@ -1,0 +1,2917 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MXTires.Microdata</name>
+    </assembly>
+    <members>
+        <member name="T:MXTires.Microdata.Action">
+            <summary>
+            An action performed by a direct agent and indirect participants upon a direct object. 
+            Optionally happens at a location with the help of an inanimate instrument. 
+            The execution of the action may produce a result. 
+            Specific action sub-type documentation specifies the exact expectation of each argument/role. 
+            See also blog post and Actions overview document.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Thing">
+            <summary>
+            The most generic type of item.
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Thing.ToJson">
+            <summary>
+            Returns Json string that  represents current object.
+            JSON written by the serializer with an option of Formatting.None and NullValueHandling.Ignore. It makes the JSON result small, skipping all unnecessary 
+            spaces and line breaks to produce the most compact and efficient JSON possible.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MXTires.Microdata.Thing.ToIndentedJson">
+            <summary>
+            Returns Json string that  represents current object.
+            JSON written by the serializer with an option of Formatting.Indented produces nicely formatted, easy to read JSON – great when you are developing. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.AdditionalType">
+            <summary>
+            URL 	An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. 
+            This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 
+            'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those 
+            defined externally.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.AlternateName">
+            <summary>
+            Text 	An alias for the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.Description">
+            <summary>
+            Text 	A short description of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.Image">
+            <summary>
+            URL  to an image of the item. This can be a URL or a fully described ImageObject.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.Name">
+            <summary>
+            Text 	The name of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.PotentialAction">
+            <summary>
+            Action - Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.SameAs">
+            <summary>
+            URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.Url">
+            <summary>
+            URL of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Thing.MainEntityOfPage">
+            <summary>
+            URL  or CreativeWork - Indicates a page (or other CreativeWork) for which this thing is the main entity being described.
+            Many (but not all) pages have a fairly clear primary topic, some entity or thing that the page describes. For example a restaurant's home page might be primarily about that Restaurant, or an event listing page might represent a single event. The mainEntity and mainEntityOfPage properties allow you to explicitly express the relationship between the page and the primary entity. 
+            Related properties include sameAs, about, and url. 
+            The sameAs and url properties are both similar to mainEntityOfPage. The url property should be reserved to refer to more official or authoritative web pages, such as the item’s official website. The sameAs property also relates a thing to a page that indirectly identifies it. Whereas sameAs emphasises well known pages, the mainEntityOfPage property serves more to clarify which of several entities is the main one for that page. 
+            mainEntityOfPage can be used for any page, including those not recognized as authoritative for that entity. For example, for a product, sameAs might refer to a page on the manufacturer’s official site with specs for the product, while mainEntityOfPage might be used on pages within various retailers’ sites giving details for the same product. 
+            about is similar to mainEntity, with two key differences. First, about can refer to multiple entities/topics, while mainEntity should be used for only the primary one. Second, some pages have a primary entity that itself describes some other entity. For example, one web page may display a news article about a particular person. Another page may display a product review for a particular product. In these cases, mainEntity for the pages should refer to the news article or review, respectively, while about would more properly refer to the person or product. 
+            Inverse property: mainEntity.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.ActionStatus">
+            <summary>
+            ActionStatusType - Indicates the current disposition of the Action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Agent">
+            <summary>
+            Person  or Organization - The direct performer or driver of the action (animate or inanimate). e.g. *John* wrote a book.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.EndTime">
+            <summary>
+            DateTime - The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), 
+            the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. 
+            John wrote a book from January to *December*. Note that Event uses startDate/endDate instead of startTime/endTime, 
+            even when describing dates with times. This situation may be clarified in future revisions.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Error">
+            <summary>
+            Thing 	For failed actions, more information on the cause of the failure.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Instrument">
+            <summary>
+             Thing 	The object that helped the agent perform the action. e.g. John wrote a book with *a pen*.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Location">
+            <summary>
+            PostalAddress  or Place - The location of the event, organization or action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.ActionObject">
+            <summary>
+            Thing - The object upon the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). e.g. John read *a book*.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Participant">
+            <summary>
+            Person  or  Organization - Other co-agents that participated in the action indirectly. e.g. John wrote a book with *Steve*.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Result">
+            <summary>
+            Thing 	The result produced in the action. e.g. John wrote *a book*.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.StartTime">
+            <summary>
+            DateTime -The startTime of something. 
+            For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. 
+            For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. 
+            Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. 
+            This situation may be clarified in future revisions.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Action.Target">
+             <summary>
+            EntryPoint - Indicates a target EntryPoint for an Action.
+             </summary>
+        </member>
+        <member name="T:MXTires.Microdata.AchieveAction">
+            <summary>
+            The act of accomplishing something via previous efforts. It is an instantaneous action rather than an ongoing process.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.AgreeAction">
+            <summary>
+            The act of expressing a consistency of opinion with the object. 
+            An agent agrees to/about an object (a proposition, topic or theme) with participants.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ReactAction">
+            <summary>
+            The act of responding instinctively and emotionally to an object, expressing a sentiment.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.AssessAction">
+            <summary>
+            The act of forming one's opinion, reaction or sentiment.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ChooseAction">
+            <summary>
+            The act of expressing a preference from a set of options or a large or unbounded set of choices/options.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ChooseAction.Option">
+            <summary>
+            Text  or Thing - A sub property of object. The options subject to this action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.DisagreeAction">
+            <summary>
+            The act of expressing a difference of opinion with the object. 
+            An agent disagrees to/about an object (a proposition, topic or theme) with participants.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.DislikeAction">
+            <summary>
+            The act of expressing a negative sentiment about the object.
+            An agent dislikes an object (a proposition, topic or theme) with participants.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.EndorseAction">
+            <summary>
+            An agent approves/certifies/likes/supports/sanction an object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.EndorseAction.Endorsee">
+            <summary>
+            Person  or Organization - A sub property of participant. The person/organization being supported.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.IgnoreAction">
+            <summary>
+            The act of intentionally disregarding the object. An agent ignores an object.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.LikeAction">
+            <summary>
+            The act of expressing a positive sentiment about the object. 
+            An agent likes an object (a proposition, topic or theme) with participants.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ReviewAction">
+            <summary>
+            The act of producing a balanced opinion about the object for an audience. 
+            An agent reviews an object with participants resulting in a review.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ReviewAction.ResultReview">
+            <summary>
+            Review 	- sub property of result. The review that resulted in the performing of the action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.VoteAction">
+            <summary>
+            The act of expressing a preference from a fixed/finite/structured set of choices/options.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.VoteAction.Candidate">
+            <summary>
+            Person - A sub property of object. The candidate subject of this action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.WantAction">
+            <summary>
+            The act of expressing a desire about the object. An agent wants an object.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.DrinkAction">
+            <summary>
+            The act of swallowing liquids.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ConsumeAction">
+            <summary>
+            The act of ingesting information/resources/food.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ConsumeAction.ExpectsAcceptanceOf">
+            <summary>
+            Offer -	An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.EatAction">
+            <summary>
+            The act of swallowing solid objects.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.InstallAction">
+            <summary>
+            The act of installing an application.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ListenAction">
+            <summary>
+            The act of consuming audio content.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ReadAction">
+            <summary>
+            The act of consuming written content.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.UseAction">
+            <summary>
+            The act of applying an object to its intended purpose.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ViewAction">
+            <summary>
+            The act of consuming static visual content.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.WatchAction">
+            <summary>
+            The act of consuming dynamic/moving visual content.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.WearAction">
+            <summary>
+            The act of dressing oneself in clothing.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ActivateAction">
+            <summary>
+            The act of starting or activating a device or application (e.g. starting a timer or turning on a flashlight).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ControlAction">
+            <summary>
+            An agent controls a device or application.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.DeactivateAction">
+            <summary>
+            The act of stopping or deactivating a device or application (e.g. stopping a timer or turning off a flashlight).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ResumeAction">
+            <summary>
+            The act of resuming a device or application which was formerly paused (e.g. resume music playback or resume a timer).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.SuspendAction">
+            <summary>
+            The act of momentarily pausing a device or application (e.g. pause music playback or pause a timer).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.CookAction">
+            <summary>
+            The act of producing/preparing food.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.CreateAction">
+            <summary>
+            The act of deliberately creating/producing/generating/building a result out of the agent.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CookAction.FoodEstablishment">
+            <summary>
+            FoodEstablishment  or Place - A sub property of location. The specific food establishment where the action occurred.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CookAction.FoodEvent">
+            <summary>
+            FoodEvent - A sub property of location. The specific food event where the action occurred.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CookAction.Recipe">
+            <summary>
+            Recipe - A sub property of instrument. The recipe/instructions used to perform the action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Actions.CreateActions.FoodEstablishment">
+            <summary>
+            A food-related business.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.LocalBusiness">
+            <summary>
+            A particular physical business or branch of an organization. Examples of LocalBusiness include a restaurant, a particular branch of a restaurant chain, a branch of a bank, a medical practice, a club, a bowling alley, etc.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Organization">
+            <summary>
+            An organization such as a school, NGO, corporation, club, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Address">
+            <summary>
+            PostalAddress - Physical address of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Location">
+            <summary>
+            The location of the event, organization or action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Telephone">
+            <summary>
+            The telephone number.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Review">
+            <summary>
+            A review of the item. Supersedes reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.MakesOffer">
+            <summary>
+            Offer - A pointer to products or services offered by the organization or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.LegalName">
+            <summary>
+            Text - The official name of the organization, e.g. the registered company name.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.AggregateRating">
+            <summary>
+            AggregateRating - The overall rating, based on a collection of reviews or ratings, of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Brand">
+            <summary>
+            Brand or Organization - The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Logo">
+            <summary>
+            URL - An associated logo.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.ContactPoint">
+            <summary>
+            ContactPoint - A contact point for a person or organization. Supersedes contactPoints.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Department">
+            <summary>
+            Organization - A relationship between an organization and a department of that organization, 
+            also described as an organization (allowing different urls, logos, opening hours). 
+            For example: a store with a pharmacy, or a bakery with a cafe.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.DissolutionDate">
+            <summary>
+            Date - The date that this organization was dissolved.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MXTires.Microdata.Organization.Duns" -->
+        <member name="P:MXTires.Microdata.Organization.Email">
+            <summary>
+            Text - Email address.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Employee">
+            <summary>
+            Person - Someone working for this organization. Supersedes <code>employees</code>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Employees">
+            <summary>
+            Person - Someone working for this organization. Supersedes employees.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Event">
+            <summary>
+            Upcoming or past event associated with this place, organization, or action. Supersedes <code>events</code>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Events">
+            <summary>
+            Collection of upcoming or past event associated with this place, organization, or action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.FaxNumber">
+            <summary>
+            Text - The fax number.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Founder">
+            <summary>
+            A person who founded this organization. Supersedes <code>founders</code>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Founders">
+            <summary>
+            Collection of people who founded this organization.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.FoundingDate">
+            <summary>
+            Date - The date that this organization was founded.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.FoundingLocation">
+            <summary>
+            Place - The place where the Organization was founded.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.GlobalLocationNumber">
+            <summary>
+            Text - The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) 
+            of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and 
+            physical locations.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.HasPOS">
+            <summary>
+            Place -	Points-of-Sales operated by the organization or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.InteractionCount">
+            <summary>
+            Text - A count of a specific user interactions with this item—for example, 20 UserLikes, 5 UserComments, 
+            or 300 UserDownloads. The user interaction type should be one of the sub types of UserInteraction.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.IsicV4">
+            <summary>
+            Text - The International Standard of Industrial Classification of All Economic Activities (ISIC), 
+            Revision 4 code for a particular organization, business person, or place.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Member">
+            <summary>
+            Person  or Organization - A member of an Organization or a ProgramMembership. 
+            Organizations can be members of organizations; ProgramMembership is typically for individuals. 
+            Supersedes members, musicGroupMember.Inverse property: <code>memberOf</code>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.MemberOf">
+            <summary>
+            ProgramMembership  or Organization - An Organization (or ProgramMembership) to which this 
+            Person or Organization belongs. Inverse property: <code>member</code>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Naics">
+            <summary>
+            The North American Industry Classification System (NAICS) code for a particular organization or business person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Owns">
+            <summary>
+            Product  or OwnershipInfo - Products owned by the organization or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.TaxID">
+            <summary>
+            The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.Seeks">
+            <summary>
+            Demand 	A pointer to products or services sought by the organization or person (demand).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.SubOrganization">
+            <summary>
+            Organization - A relationship between two organizations where the first includes the second, e.g., as a subsidiary. 
+            See also: the more specific 'department' property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Organization.VatID">
+            <summary>
+            Text - The Value-added Tax ID of the organization or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LocalBusiness.BranchOf">
+            <summary>
+            The larger organization that this local business is a branch of, if any.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LocalBusiness.CurrenciesAccepted">
+            <summary>
+            Text 	The currency accepted (in ISO 4217 currency format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LocalBusiness.OpeningHours">
+             <summary>
+             Duration 	The opening hours for a business. Opening hours can be specified as a weekly time range, starting with days, then times per day. Multiple days can be listed with commas ',' separating each day. Day or time ranges are specified using a hyphen '-'.
+            - Days are specified using the following two-letter combinations: Mo, Tu, We, Th, Fr, Sa, Su.
+            - Times are specified using 24:00 time. For example, 3pm is specified as 15:00. 
+            - Here is an example: <time itemprop="openingHours" datetime="Tu,Th 16:00-20:00">Tuesdays and Thursdays 4-8pm</time>. 
+            - If a business is open 7 days a week, then it can be specified as <time itemprop="openingHours" datetime="Mo-Su">Monday through Sunday, all day</time>.
+             </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LocalBusiness.PaymentAccepted">
+            <summary>
+            Text 	Cash, credit card, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LocalBusiness.PriceRange">
+            <summary>
+            The price range of the business, for example $$$.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Answer">
+            <summary>
+            An answer offered to a question; perhaps correct, perhaps opinionated or wrong.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.CreativeWork">
+            <summary>
+            The most generic kind of creative work, including books, movies, photographs, software programs, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.About">
+            <summary>
+            The subject matter of the content.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AccessibilityAPI">
+            <summary>
+            Indicates that the resource is compatible with the referenced accessibility API (WebSchemas wiki lists possible values).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AccessibilityControl">
+            <summary>
+            Text 	Identifies input methods that are sufficient to fully control the described resource (WebSchemas wiki lists possible values).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AccessibilityFeature">
+            <summary>
+            Text 	Content features of the resource, such as accessible media, alternatives and supported enhancements for 
+            accessibility (WebSchemas wiki lists possible values).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AccessibilityHazard">
+            <summary>
+            A characteristic of the described resource that is physiologically dangerous to some users. 
+            Related to WCAG 2.0 guideline 2.3. (WebSchemas wiki lists possible values)
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AccountablePerson">
+            <summary>
+            Person - Specifies the Person that is legally accountable for the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AggregateRating">
+            <summary>
+            AggregateRating - The overall rating, based on a collection of reviews or ratings, of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AlternativeHeadline">
+            <summary>
+            Text 	A secondary title of the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.AssociatedMedia">
+            <summary>
+            MediaObject - A media object that encodes this CreativeWork. This property is a synonym for encoding.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Audience">
+            <summary>
+            Audience - The intended audience of the item, i.e. the group for whom the item was created.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Audio">
+            <summary>
+            An embedded audio object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Author">
+            <summary>
+            Person  or  Organization - The author of this content. 
+            Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. 
+            That is equivalent to this and may be used interchangeably.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Award">
+            <summary>
+            Text - An award won by this person or for this creative work. Supersedes awards.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Character">
+            <summary>
+            Person - Fictional person connected with a creative work.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Citation">
+            <summary>
+            	CreativeWork  {get;set;} or 
+                Text - A citation or reference to another creative work, such as another publication, web page, scholarly article, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Comment">
+            <summary>
+            UserComments  or Comment - Comments, typically from users, on this CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.CommentCount">
+            <summary>
+            Integer - The number of comments this CreativeWork (e.g. Article, Question or Answer) has received. This is most applicable to works published in Web sites with commenting system; additional comments may exist elsewhere.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.ContentLocation">
+            <summary>
+            Place - The location of the content.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.ContentRating">
+            <summary>
+            Text - Official rating of a piece of content—for example,'MPAA PG-13'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Contributor">
+            <summary>
+            Person  or Organization - A secondary contributor to the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.CopyrightHolder">
+            <summary>
+            Person  or Organization - The party holding the legal copyright to the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.CopyrightYear">
+            <summary>
+            Number - The year during which the claimed copyright for the CreativeWork was first asserted.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Creator">
+            <summary>
+            Person  or Organization - The creator/author of this CreativeWork or UserComments. This is the same as the Author property for CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.DateCreated">
+            <summary>
+            Date - The date on which the CreativeWork was created.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.DateModified">
+            <summary>
+            Date - The date on which the CreativeWork was most recently modified.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.DatePublished">
+            <summary>
+            Date - Date of first broadcast/publication.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.DiscussionUrl">
+            <summary>
+             URL - A link to the page containing the comments of the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Editor">
+            <summary>
+            Person - Specifies the Person who edited the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.EducationalAlignment">
+            <summary>
+            AlignmentObject - An alignment to an established educational framework.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.EducationalUse">
+            <summary>
+            Text - The purpose of a work in the context of education; for example, 'assignment', 'group work'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Encoding">
+            <summary>
+            MediaObject - A media object that encodes this CreativeWork. This property is a synonym for associatedMedia. Supersedes encodings.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.ExampleOfWork">
+            <summary>
+            CreativeWork - A creative work that this work is an example/instance/realization/derivation of. Inverse property: workExample.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Genre">
+            <summary>
+            Text - Genre of the creative work or group.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.HasPart">
+            <summary>
+            CreativeWork - Indicates a CreativeWork that is (in some sense) a part of this CreativeWork. Inverse property: isPartOf.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Headline">
+            <summary>
+            Text -	Headline of the article
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.InLanguage">
+            <summary>
+            Text - The language of the content. please use one of the language codes from the IETF BCP 47 standard.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.InteractionCount">
+            <summary>
+            Text - A count of a specific user interactions with this item—for example, 20 UserLikes, 5 UserComments, or 300 UserDownloads. The user interaction type should be one of the sub types of UserInteraction.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.InteractivityType">
+            <summary>
+            Text - The predominant mode of learning supported by the learning resource. Acceptable values are 'active', 'expositive', or 'mixed'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.IsBasedOnUrl">
+            <summary>
+            URL - A resource that was used in the creation of this resource. This term can be repeated for multiple sources. For example, http://example.com/great-multiplication-intro.html
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.IsFamilyFriendly">
+            <summary>
+            Boolean - Indicates whether this content is family friendly.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.IsPartOf">
+            <summary>
+            CreativeWork - Indicates a CreativeWork that this CreativeWork is (in some sense) part of.
+            Inverse property: hasPart.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Keywords">
+            <summary>
+            Text -	Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.LearningResourceType">
+            <summary>
+            Text - The predominant type or kind characterizing the learning resource. For example, 'presentation', 'handout'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.License">
+            <summary>
+            URL  or CreativeWork - A license document that applies to this content, typically indicated by URL.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Mentions">
+            <summary>
+            Thing - Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Offers">
+            <summary>
+            Offer - An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, or give away tickets to an event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Position">
+            <summary>
+            Integer  or Text - The position of an item in a series or sequence of items.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Provider">
+            <summary>
+            Person  or  Organization  -	The service provider, service operator, or service performer; 
+            the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. 
+            A provider may also serve as the seller. Supersedes carrier.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Publisher">
+            <summary>
+            Organization - The publisher of the creative work.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.PublishingPrinciples">
+            <summary>
+            URL - Link to page describing the editorial principles of the organization primarily responsible for the creation of the CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.RecordedAt">
+            <summary>
+            Event -	The Event where the CreativeWork was recorded. The CreativeWork may capture all or part of the event.
+            Inverse property: recordedIn.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.ReleasedEvent">
+            <summary>
+            PublicationEvent - The place and time the release was issued, expressed as a PublicationEvent.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Review">
+            <summary>
+            Review - A review of the item. Supersedes reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.SourceOrganization">
+            <summary>
+            Organization - The Organization on whose behalf the creator was working.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Text">
+            <summary>
+            Text -The textual content of this CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.ThumbnailUrl">
+            <summary>
+            URL - A thumbnail image relevant to the Thing.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.TimeRequired">
+            <summary>
+            Duration - Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'P30M', 'P1H25M'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Translator">
+            <summary>
+            Person  or Organization - Organization or person who adapts a creative work to different languages, regional differences and technical requirements of a target market.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.TypicalAgeRange">
+            <summary>
+            Text - The typical expected age range, e.g. '7-9', '11-'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Version">
+            <summary>
+            Number - The version of the CreativeWork embodied by a specified resource.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.Video">
+            <summary>
+            VideoObject - An embedded video object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWork.WorkExample">
+            <summary>
+            CreativeWork - Example/instance/realization/derivation of the concept of this creative work. eg. 
+            The paperback edition, first edition, or eBook. 
+            Inverse  property: exampleOfWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Answer.DownvoteCount">
+            <summary>
+            Integer 	The number of downvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Answer.ParentItem">
+            <summary>
+            Question 	The parent of a question, answer or item in general.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Answer.UpvoteCount">
+            <summary>
+            	Integer 	The number of upvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Attributes.ActorAttribute.#ctor(MXTires.Microdata.Thing)">
+            <summary>
+            Initializes a new instance of the MXTires.Microdata.Attributes.ActorAttribute class by using a <code>Thing</code> object.
+            </summary>
+            <param name="actor">Organization or Person</param>
+        </member>
+        <member name="M:MXTires.Microdata.Attributes.ActorAttribute.IsValid(System.Object)">
+            <summary>
+             Determines whether the specified value of the object is valid.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MXTires.Microdata.BroadcastService">
+            <summary>
+            A delivery service through which content is provided via broadcast over the air or online.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.BroadcastService.Area">
+            <summary>
+            Place -	The area within which users can expect to reach the broadcast service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.BroadcastService.Broadcaster">
+            <summary>
+            Organization - The organization owning or operating the broadcast service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.BroadcastService.ParentService">
+            <summary>
+            BroadcastService - A broadcast service to which the broadcast service may belong to such as regional variations of a national channel.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Comment">
+            <summary>
+            A comment on an item - for example, a comment on a blog post. The comment's content is expressed via the "text" property, and its topic via "about", properties shared with all CreativeWorks.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Comment.DownvoteCount">
+            <summary>
+            Integer - The number of downvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Comment.ParentItem">
+            <summary>
+            Question - The parent of a question, answer or item in general.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Comment.UpvoteCount">
+            <summary>
+            Integer - The number of upvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.CreativeWorks.Article">
+            <summary>
+            An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all. 
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.MediaObject">
+            <summary>
+            An image, video, or audio object embedded in a web page. Note that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.AssociatedArticle">
+            <summary>
+            NewsArticle 	A NewsArticle associated with the Media Object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.Bitrate">
+            <summary>
+            Text 	The bitrate of the media object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.ContentSize">
+            <summary>
+            Text 	File size in (mega/kilo) bytes.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.ContentUrl">
+            <summary>
+            URL 	Actual bytes of the media object, for example the image file or video file.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.Duration">
+            <summary>
+            Duration 	The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.EmbedUrl">
+            <summary>
+            URL 	A URL pointing to a player for a specific video. In general, this is the information in the src element of an embed tag and should not be the same as the content of the loc tag.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.EncodesCreativeWork">
+            <summary>
+            CreativeWork 	The CreativeWork encoded by this media object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.EncodingFormat">
+            <summary>
+            Text 	mp3, mpeg4, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.Expires">
+            <summary>
+            Date 	Date the content expires and is no longer useful or available. Useful for videos.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.Height">
+            <summary>
+            QuantitativeValue  or  Distance - The height of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.PlayerType">
+            <summary>
+            Text 	Player type required—for example, Flash or Silverlight.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.ProductionCompany">
+            <summary>
+            Organization 	The production company or studio responsible for the item e.g. series, video game, episode etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.RegionsAllowed">
+            <summary>
+            Place 	The regions where the media is allowed. If not specified, then it's assumed to be allowed everywhere. Specify the countries in ISO 3166 format.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.RequiresSubscription">
+            <summary>
+            Boolean - Indicates if use of the media require a subscription (either paid or free). Allowed values are true or false (note that an earlier version had 'yes', 'no').
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.UploadDate">
+            <summary>
+            Date - Date when this media object was uploaded to this site.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MediaObject.Width">
+            <summary>
+             QuantitativeValue  or Distance - The width of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWorks.ImageObject.Caption">
+            <summary>
+            Text - The caption for this object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWorks.ImageObject.ExifData">
+            <summary>
+            Text  or PropertyValue 	exif data for this object.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWorks.ImageObject.RepresentativeOfPage">
+            <summary>
+            Boolean - Indicates whether this image is representative of the content of the page.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.CreativeWorks.ImageObject.Thumbnail">
+            <summary>
+            ImageObject -Thumbnail image for an image or video.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.CreativeWorks.NewsArticle">
+            <summary>
+            A news article.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Recipe">
+            <summary>
+            A recipe.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.BroadcastEvent">
+            <summary>
+            An over the air or online broadcast event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.PublicationEvent">
+            <summary>
+            A PublicationEvent corresponds indifferently to the event of publication for a CreativeWork of any type e.g. a broadcast event, an on-demand event, a book/journal publication via a variety of delivery media.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Attendee">
+            <summary>
+            Organization  or Person - A person or organization attending the event. Supersedes attendees.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.DoorTime">
+            <summary>
+            DateTime - The time admission will commence.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Duration">
+            <summary>
+            Duration - The duration of the item (movie, audio recording, event, etc.) in ISO 8601 date format.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.EndDate">
+            <summary>
+            Date - The end date and time of the item (in ISO 8601 date format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.EventStatus">
+            <summary>
+            EventStatusType - An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Location">
+            <summary>
+            PostalAddress  or Place - The location of the event, organization or action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Offers">
+            <summary>
+            Offer - An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, or give away tickets to an event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Organizer">
+            <summary>
+            Organization  or Person - An organizer of an Event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.Performer">
+            <summary>
+            Organization  or Person 	A performer at the event—for example, a presenter, musician, musical group or actor. Supersedes performers.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.PreviousStartDate">
+            <summary>
+            Date  - Used in conjunction with eventStatus for rescheduled or cancelled events. This property contains the previously scheduled start date. For rescheduled events, the startDate property should be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.RecordedIn">
+            <summary>
+            CreativeWork - The CreativeWork that captured all or part of this Event. Inverse property: recordedAt.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.StartDate">
+            <summary>
+            Date - The start date and time of the item (in ISO 8601 date format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.SubEvent">
+            <summary>
+            Event -	An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference. Supersedes subEvents.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.SuperEvent">
+            <summary>
+            Event -	An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.TypicalAgeRange">
+            <summary>
+            Text  - The typical expected age range, e.g. '7-9', '11-'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Event.WorkPerformed">
+            <summary>
+            CreativeWork - A work performed in some event, for example a play performed in a TheaterEvent.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.PublicationEvent.Free">
+            <summary>
+            Boolean - A flag to signal that the publication is accessible for free.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.PublicationEvent.PublishedOn">
+            <summary>
+            BroadcastService - A broadcast service associated with the publication event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.BusinessEvent">
+            <summary>
+            Event type: Business event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.ChildrensEvent">
+            <summary>
+            Event type: Children's event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.ComedyEvent">
+            <summary>
+            Event type: Comedy event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.DanceEvent">
+            <summary>
+            Event type: DanceEvent event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.DeliveryEvent">
+            <summary>
+            Event type: Delivery event.
+            An event involving the delivery of an item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.DeliveryEvent.AccessCode">
+            <summary>
+            Text - Password, PIN, or access code needed for delivery (e.g. from a locker).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.DeliveryEvent.AvailableFrom">
+            <summary>
+            DateTime - When the item is available for pickup from the store, locker, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.DeliveryEvent.AvailableThrough">
+            <summary>
+            DateTime - After this date, the item will no longer be available for pickup.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.DeliveryEvent.HasDeliveryMethod">
+            <summary>
+            DeliveryMethod - Method used for delivery or shipping.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.EducationEvent">
+            <summary>
+            Event type: Education event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.Festival">
+            <summary>
+            Event type: Festival event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.FoodEvent">
+            <summary>
+            Event type: Food event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.LiteraryEvent">
+            <summary>
+            Event type: Literary event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.MusicEvent">
+            <summary>
+            Event type: Music event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.VisualArtsEvent">
+            <summary>
+            Event type: VisualArts event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.OnDemandEvent">
+            <summary>
+            A publication event e.g. catch-up TV or radio podcast, during which a program is available on-demand.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.SaleEvent">
+            <summary>
+            Event type: Sale event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.SocialEvent">
+            <summary>
+            Event type: Social event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.SportsEvent">
+            <summary>
+            Event type: Sports event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.SportsEvent.AwayTeam">
+            <summary>
+            Person  or SportsTeam - The away team in a sports event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.SportsEvent.Competitor">
+            <summary>
+            Person  or SportsTeam - A competitor in a sports event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.SportsEvent.HomeTeam">
+            <summary>
+            Person  or SportsTeam - The home team in a sports event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.TheaterEvent">
+            <summary>
+            Event type: Theater event.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.UserInteraction">
+            <summary>
+            A user interacting with a page.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Events.UserComments">
+            <summary>
+            The UserInteraction event in which a user comments on an item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.UserComments.CommentText">
+            <summary>
+            Text - The text of the UserComment.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.UserComments.CommentTime">
+            <summary>
+            Date - The time at which the UserComment was made.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.UserComments.Creator">
+            <summary>
+            Person  or Organization - The creator/author of this CreativeWork or UserComments. This is the same as the Author property for CreativeWork.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.UserComments.Discusses">
+            <summary>
+            CreativeWork - Specifies the CreativeWork associated with the UserComment.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Events.UserComments.ReplyToUrl">
+            <summary>
+            URL - The URL at which a reply may be posted to the specified UserComment.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.FindAction">
+            <summary>
+            The act of finding an object. 
+            Related actions: 
+            <code>SearchAction</code>: FindAction is generally lead by a SearchAction, but not necessarily
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.BreadcrumbList">
+            <summary>
+            A BreadcrumbList is an ItemList consisting of a chain of linked Web pages, typically described using at 
+            least their URL and their name, ending with the current page.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.ItemList">
+            <summary>
+            A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. 
+            Not to be confused with HTML lists, which are often used only for formatting.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ItemList.ItemListElement">
+            <summary>
+            Thing  or ListItem  or Text - For itemListElement values, you can use simple strings (e.g. "Peter", "Paul", "Mary"), existing entities, or use ListItem.
+            Text values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists. 
+            Note: The order of elements in your mark-up is not sufficient for indicating the order or elements. Use ListItem with a 'position' property in such cases.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ItemList.ItemListOrder">
+            <summary>
+            ItemListOrderType  or Text - Type of ordering (e.g. Ascending, Descending, Unordered).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ItemList.NumberOfItems">
+            <summary>
+            Number - The number of items in an ItemList. Note that some descriptions might not full describe all items in a list 
+            (e.g. multi-page pagination).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Class">
+            <summary>
+            A class, also often called a 'Type'; equivalent to rdfs:Class.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Demand">
+            <summary>
+            A demand entity represents the public, not necessarily binding, not necessarily exclusive, 
+            announcement by an organization or person to seek a certain type of goods or services. 
+            For describing demand using this type, the very same properties used for Offer apply.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.ActionStatusType">
+            <summary>
+            The status of an Action.
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.ActionStatusType.ActiveActionStatus">
+            <summary>
+            An in-progress action (e.g, while watching the movie, or driving to a location).
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.ActionStatusType.CompletedActionStatus">
+            <summary>
+            An action that has already taken place.
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.ActionStatusType.FailedActionStatus">
+            <summary>
+            An action that failed to complete. 
+            The action's error property and the HTTP return code contain more information about the failure.
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.ActionStatusType.PotentialActionStatus">
+            <summary>
+            A description of an action that is supported.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.AdministrativeArea">
+            <summary>
+            A geographical region under the jurisdiction of a particular government.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Place">
+            <summary>
+            Entities that have a somewhat fixed, physical extension.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Geo">
+            <summary>
+            The location of the event, organization or action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.HasMap">
+            <summary>
+            A URL to a map of the place. Supersedes map, maps.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.OpeningHoursSpecification">
+            <summary>
+            OpeningHoursSpecification - The opening hours of a certain place.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.address">
+            <summary>
+            PostalAddress - Physical address of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.aggregateRating">
+            <summary>
+             AggregateRating - The overall rating, based on a collection of reviews or ratings, of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.containedIn">
+            <summary>
+            Place - The basic containment relation between places.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Event">
+            <summary>
+            Event - Upcoming or past event associated with this place, organization, or action. Supersedes events.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.FaxNumber">
+            <summary>
+            Text - The fax number.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.GlobalLocationNumber">
+            <summary>
+            Text - The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.InteractionCount">
+            <summary>
+            Text - A count of a specific user interactions with this item—for example, 20 UserLikes, 5 UserComments, or 300 UserDownloads. The user interaction type should be one of the sub types of UserInteraction.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.IsicV4">
+            <summary>
+            Text 	The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Logo">
+            <summary>
+            ImageObject  or URL - An associated logo.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Photo">
+            <summary>
+            Photograph  or ImageObject 	A photograph of this place. Supersedes photos.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Photos">
+            <summary>
+            Photos.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Review">
+            <summary>
+            Review - A review of the item. Supersedes reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Reviews">
+            <summary>
+            Reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Place.Telephone">
+            <summary>
+            Text - The telephone number.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.AggregateOffer">
+            <summary>
+            When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Offer">
+            <summary>
+            An offer to transfer some rights to an item or to provide a service—for example, 
+            an offer to sell tickets to an event, to rent the DVD of a movie, to stream a TV show over the internet, 
+            to repair a motorcycle, or to loan a book. For GTIN-related fields, see Check Digit calculator and validation guide from GS1.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MXTires.Microdata.Intangible.Offer.Price" -->
+        <member name="P:MXTires.Microdata.Intangible.Offer.PriceCurrency">
+            <summary>
+            The currency (in 3-letter ISO 4217 format) of the price or a price component, when attached to PriceSpecification and its subtypes.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.PriceSpecification">
+            <summary>
+            One or more detailed price specifications, indicating the unit price and delivery or payment charges.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AcceptedPaymentMethod">
+            <summary>
+            The payment method(s) accepted by seller for this offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Category">
+            <summary>
+            The payment method(s) accepted by seller for this offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.ValidFrom">
+            <summary>
+            The date when the item becomes valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.ValidThrough">
+            <summary>
+            The end of the validity of offer, price specification, or opening hours data.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AddOn">
+            <summary>
+            An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Sku">
+            <summary>
+            The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.SerialNumber">
+            <summary>
+            The serial number or any alphanumeric identifier of a particular product. 
+            When attached to an offer, it is a shortcut for the serial number of the product included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Seller">
+            <summary>
+            Organization  or Person -An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider. Supersedes merchant, vendor.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Review">
+            <summary>
+            Review - A review of the item. Supersedes reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Availability">
+            <summary>
+            ItemAvailability - The availability of this item—for example In stock, Out of stock, Pre-order, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AdvanceBookingRequirement">
+            <summary>
+            QuantitativeValue - The amount of time that is required between accepting the offer and the actual usage of the resource or service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AvailabilityEnds">
+            <summary>
+            DateTime - The end of the availability of the product or service included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AvailabilityStarts">
+            <summary>
+            DateTime - The beginning of the availability of the product or service included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AvailableAtOrFrom">
+            <summary>
+            Place - The place(s) from which the offer can be obtained (e.g. store locations).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.AvailableDeliveryMethod">
+            <summary>
+            DeliveryMethod - The delivery method(s) available for this offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.BusinessFunction">
+            <summary>
+            BusinessFunction - The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.DeliveryLeadTime">
+            <summary>
+            QuantitativeValue - The typical delay between the receipt of the order and the goods leaving the warehouse.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.EligibleCustomerType">
+            <summary>
+            BusinessEntityType -The type(s) of customers for which the given offer is valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.EligibleDuration">
+            <summary>
+            QuantitativeValue - The duration for which the given offer is valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.EligibleQuantity">
+            <summary>
+            QuantitativeValue - The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.EligibleRegion">
+            <summary>
+            GeoShape  or Text - The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, 
+            or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.EligibleTransactionVolume">
+            <summary>
+            PriceSpecification -The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, 
+            to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Gtin13">
+            <summary>
+            The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceeding zero. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Gtin14">
+            <summary>
+            The GTIN-14 code of the product, or the product to which the offer refers. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Gtin8">
+            <summary>
+            The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.IncludesObject">
+            <summary>
+            TypeAndQuantityNode - This links to a node or nodes indicating the exact quantity of the products included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.IneligibleRegion">
+            <summary>
+            Place 	The place(s) from which the offer cannot be obtained (e.g. a region where the transaction is not allowed).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.InventoryLevel">
+            <summary>
+            The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.ItemCondition">
+            <summary>
+            OfferItemCondition 	A predefined value from OfferItemCondition or a textual description of the condition of the product or service, 
+            or the products or services included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.ItemOffered">
+            <summary>
+            Product - The item being offered.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Offer.Warranty">
+            <summary>
+            WarrantyPromise - The warranty promise(s) included in the offer..
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateOffer.HighPrice">
+            <summary>
+            Number  or Text - The highest price of all offers available.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateOffer.LowPrice">
+            <summary>
+            Number  or Text - The lowest price of all offers available.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateOffer.OfferCount">
+            <summary>
+            Integer - The number of offers for the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateOffer.Offers">
+            <summary>
+            Offer -	An offer to provide this item. For example, an offer to sell a product, rent the DVD of a movie, 
+            or give away tickets to an event.
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Intangible.Rating.#ctor">
+            <summary>
+            Default struct
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Intangible.Rating.#ctor(System.Double)">
+            <summary>
+            Default struct
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Intangible.Rating.#ctor(System.String)">
+            <summary>
+            Default struct
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Rating.BestRating">
+            <summary>
+            Number  or Text. The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Rating.RatingValue">
+            <summary>
+            Text. The rating for the content.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Rating.WorstRating">
+            <summary>
+            The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateRating.ItemReviewed">
+            <summary>
+            Thing 	The item that is being reviewed/rated.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateRating.RatingCount">
+            <summary>
+            The count of total number of ratings.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.AggregateRating.ReviewCount">
+            <summary>
+            The count of total number of reviews.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.AlignmentObject">
+            <summary>
+            An intangible item that describes an alignment between a learning resource and a node in an educational framework.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Audience.AudienceType">
+            <summary>
+            The target group associated with a given audience (e.g. veterans, car owners, musicians, etc.) domain: Audience Range: Text
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Audience.AdministrativeArea">
+            <summary>
+            The geographic area associated with the audience.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Brand">
+            <summary>
+            A brand is a name used by an organization or business person for labeling a product, product group, or similar.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Brand.Logo">
+            <summary>
+            An associated logo.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.BusinessEntityType">
+            <summary>
+            A business entity type is a conceptual entity representing the legal form, the size, the main line of business, 
+            the position in the value chain, or any combination thereof, of an organization or business person. 
+            Commonly used values: 
+            http://purl.org/goodrelations/v1#Business 
+            http://purl.org/goodrelations/v1#Enduser 
+            http://purl.org/goodrelations/v1#PublicInstitution 
+            http://purl.org/goodrelations/v1#Reseller
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.BusinessFunction">
+            <summary>
+            The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the 
+            organization or business person through the offer. Typical are sell, rental or lease, maintenance or 
+            repair, manufacture / produce, recycle / dispose, engineering / construction, or installation. 
+            Proprietary specifications of access rights are also instances of this class. 
+            Commonly used values: 
+            http://purl.org/goodrelations/v1#ConstructionInstallation 
+            http://purl.org/goodrelations/v1#Dispose 
+            http://purl.org/goodrelations/v1#LeaseOut 
+            http://purl.org/goodrelations/v1#Maintain 
+            http://purl.org/goodrelations/v1#ProvideService 
+            http://purl.org/goodrelations/v1#Repair 
+            http://purl.org/goodrelations/v1#Sell 
+            http://purl.org/goodrelations/v1#Buy
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Car">
+            <summary>
+            An automobile.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Vehicle">
+            <summary>
+            A vehicle/
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.AggregateRating">
+            <summary>
+            The overall rating, based on a collection of reviews or ratings, of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Audience">
+            <summary>
+             The intended audience of the item, i.e. the group for whom the item was created.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Brand">
+            <summary>
+            Organization  or 
+            Brand 	The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Colour">
+            <summary>
+            The colour of the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Depth">
+            <summary>
+             QuantitativeValue.	The depth of the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Gtin13">
+            <summary>
+            The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceeding zero. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Gtin14">
+            <summary>
+            The GTIN-14 code of the product, or the product to which the offer refers. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Gtin8">
+            <summary>
+            The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See GS1 GTIN Summary for more details.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Height">
+            <summary>
+            Distance  or QuantitativeValue 	The height of the item or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.IsAccessoryOrSparePartFor">
+            <summary>
+            A pointer to another product (or multiple products) for which this product is an accessory or spare part.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.IsConsumableFor">
+            <summary>
+            A pointer to another product (or multiple products) for which this product is a consumable.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.IsRelatedTo">
+            <summary>
+            A pointer to another, somehow related product (or multiple products).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.IsSimilarTo">
+            <summary>
+            A pointer to another, functionally similar product (or multiple products).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.ItemCondition">
+            <summary>
+            OfferItemCondition 	A predefined value from OfferItemCondition or a textual description of the condition of the product or service, or the products or services included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Logo">
+            <summary>
+            ImageObject  or URL 	An associated logo.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Manufacturer">
+            <summary>
+            Organization - The manufacturer of the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Model">
+            <summary>
+              ProductModel  or Text 	The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Mpn">
+            <summary>
+            The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Offers">
+            <summary>
+              	An offer to provide this item—for example, an offer to sell a product, rent the DVD of a movie, or give away tickets to an event.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.ProductId">
+            <summary>
+            The product identifier, such as ISBN. For example: <meta itemprop='productID' content='isbn:123-456-789'/>.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.ReleaseDate">
+            <summary>
+            Date.The release date of a product or product model. This can be used to distinguish the exact variant of a product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Review">
+            <summary>
+            Review 	A review of the item. Supersedes reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Reviews">
+            <summary>
+            Collection of reviews.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Sku">
+            <summary>
+            The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Weight">
+            <summary>
+            QuantitativeValue 	The weight of the product or person.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.Width">
+            <summary>
+            Distance  or QuantitativeValue 	The width of the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Product.AdditionalProperty">
+            <summary>
+            Distance  or QuantitativeValue -The width of the item.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.ContactPoint">
+            <summary>
+            A contact point—for example, a Customer Complaints department.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.AreaServed">
+            <summary>
+            AdministrativeArea 	The location served by this contact point (e.g., a phone number intended for Europeans vs. 
+            North Americans or only within the United States).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.AvailableLanguage">
+            <summary>
+            Language - A language someone may use with the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.ContactOption">
+            <summary>
+            ContactPointOption 	An option available on this contact point (e.g. a toll-free number or support for hearing-impaired callers).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.ContactType">
+            <summary>
+            Text 	A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.Email">
+            <summary>
+            Text - Email address.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.FaxNumber">
+            <summary>
+            Text 	The fax number. 
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.HoursAvailable">
+            <summary>
+            OpeningHoursSpecification 	The hours during which this contact point is available.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.ProductSupported">
+            <summary>
+            Product  or Text - The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones").
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ContactPoint.Telephone">
+            <summary>
+            Text - The telephone number.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Corporation">
+            <summary>
+            Organization: A business corporation.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Corporation.TickerSymbol">
+            <summary>
+            The exchange traded instrument associated with a Corporation object. The tickerSymbol is expressed as an exchange and an instrument name separated by a space character. 
+            For the exchange component of the tickerSymbol attribute, we reccommend using the controlled vocaulary of Market Identifier Codes (MIC) specified in ISO15022.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.ContactPointOption">
+            <summary>
+            Enumerated options related to a ContactPoint.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.DeliveryMethod">
+            <summary>
+            A delivery method is a standardized procedure for transferring the product or service to the destination of fulfillment 
+            chosen by the customer. Delivery methods are characterized by the means of transportation used, and by the 
+            organization or group that is the contracting party for the sending organization or person. 
+            Commonly used values: http://purl.org/goodrelations/v1#DeliveryModeDirectDownload 
+            http://purl.org/goodrelations/v1#DeliveryModeFreight 
+            http://purl.org/goodrelations/v1#DeliveryModeMail 
+            http://purl.org/goodrelations/v1#DeliveryModeOwnFleet 
+            http://purl.org/goodrelations/v1#DeliveryModePickUp 
+            http://purl.org/goodrelations/v1#DHL 
+            http://purl.org/goodrelations/v1#FederalExpress 
+            http://purl.org/goodrelations/v1#UPS
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.DeliveryMethod.LockerDelivery">
+            <summary>
+            A DeliveryMethod in which an item is made available via locker.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Quantity.Duration">
+            <summary>
+            Quantity: Duration (use ISO 8601 duration format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.EntryPoint.UrlTemplate">
+            <summary>
+            Text - An url template (RFC6570) that will be used to construct the target of the execution of the action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.EventStatusType">
+            <summary>
+            EventStatusType is an enumeration type whose instances represent several states that an Event may be in.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.ItemListOrderType">
+            <summary>
+            Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.ProgramMembership">
+            <summary>
+            Used to describe membership in a loyalty programs (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ProgramMembership.HostingOrganization">
+            <summary>
+            Organization - The organization (airline, travelers' club, etc.) the membership is made with.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ProgramMembership.Member">
+            <summary>
+            Organization  or Person - A member of an Organization or a ProgramMembership. 
+            Organizations can be members of organizations; ProgramMembership is typically for individuals. Supersedes members, musicGroupMember. 
+            Inverse property: memberOf.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ProgramMembership.MembershipNumber">
+            <summary>
+            Text - A unique identifier for the membership.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ProgramMembership.ProgramName">
+            <summary>
+            Text - The program providing the membership.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Property">
+            <summary>
+            A property, used to indicate attributes and relationships of some Thing; equivalent to rdf:Property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Property.DomainIncludes">
+            <summary>
+            Class - Relates a property to a class that is (one of) the type(s) the property is expected to be used on.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Property.InverseOf">
+            <summary>
+            Property - Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Property.RangeIncludes">
+            <summary>
+            Class - Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Property.SupersededBy">
+            <summary>
+            Property 	Relates a property to one that supersedes it.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.PropertyValueSpecification">
+            <summary>
+            A Property value specification.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.DefaultValue">
+            <summary>
+            Text  or Thing 	The default value of the input. For properties that expect a literal, the default is a literal value, for properties that expect an object, it's an ID reference to one of the current values.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.MaxValue">
+            <summary>
+            Number 	The upper value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.MinValue">
+            <summary>
+            Number 	The lower value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.MultipleValues">
+            <summary>
+            Boolean - Whether multiple values are allowed for the property. Default is false.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ReadonlyValue">
+            <summary>
+            Boolean - Whether or not a property is mutable. Default is false. Specifying this for a property that also has a value makes it act similar to a "hidden" input in an HTML form.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.StepValue">
+            <summary>
+            Number 	The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ValueMaxLength">
+            <summary>
+            Number 	Specifies the allowed range for number of characters in a literal value.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ValueMinLength">
+            <summary>
+            Number 	Specifies the minimum allowed range for number of characters in a literal value.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ValueName">
+            <summary>
+            Text - Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML's input@name.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ValuePattern">
+            <summary>
+            Text - Specifies a regular expression for testing literal values according to the HTML spec.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.PropertyValueSpecification.ValueRequired">
+            <summary>
+            Boolean - Whether the property must be filled in to complete the action. Default is false.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:MXTires.Microdata.Intangible.Quantity.Distance" -->
+        <member name="T:MXTires.Microdata.Intangible.Seat">
+            <summary>
+            Used to describe a seat, such as a reserved seat in an event reservation.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Seat.SeatNumber">
+            <summary>
+            Text 	The location of the reserved seat (e.g., 27).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Seat.SeatRow">
+            <summary>
+            Text 	The row location of the reserved seat (e.g., B).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Seat.SeatSection">
+            <summary>
+            Text 	The section location of the reserved seat (e.g. Orchestra).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Seat.SeatingType">
+            <summary>
+            Text  or QualitativeValue 	The type/class of the seat.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.AvailableChannel">
+            <summary>
+            ServiceChannel - A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.Produces">
+            <summary>
+            Thing 	The tangible thing generated by the service, e.g. a passport, permit, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.Provider">
+            <summary>
+            Person  or Organization - The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller. Supersedes carrier.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.ServiceArea">
+            <summary>
+            AdministrativeArea 	The geographic area where the service is provided.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.ServiceAudience">
+            <summary>
+            Audience - The audience eligible for this service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Service.ServiceType">
+            <summary>
+            Text - The type of service being offered, e.g. veterans' benefits, emergency relief, etc.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.ServiceChannel">
+            <summary>
+            A means for accessing a service, e.g. a government office location, web site, or phone number.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.AvailableLanguage">
+            <summary>
+            Language - A language someone may use with the item.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ProcessingTime">
+            <summary>
+            Duration - Estimated processing time for the service using this channel.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ProvidesService">
+            <summary>
+            Service - The service provided by this channel.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ServiceLocation">
+            <summary>
+            Place - The location (e.g. civic structure, local business, etc.) where a person can go to access the service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ServicePhone">
+            <summary>
+            ContactPoint - The phone number to use to access the service.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ServicePostalAddress">
+            <summary>
+            PostalAddress - The address for accessing the service by mail.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ServiceSmsNumber">
+            <summary>
+            ContactPoint - The number to access the service by text message.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ServiceChannel.ServiceUrl">
+            <summary>
+            URL - The website to access the service.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.DatedMoneySpecification">
+            <summary>
+            A DatedMoneySpecification represents monetary values with optional start and end dates. 
+            For example, this could represent an employee's salary over a specific period of time.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.DatedMoneySpecification.Amount">
+            <summary>
+            Number - The amount of money.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.DatedMoneySpecification.Currency">
+            <summary>
+            Text - The currency in which the monetary amount is expressed (in 3-letter ISO 4217 format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.DatedMoneySpecification.EndDate">
+            <summary>
+            Date - The end date and time of the item (in ISO 8601 date format).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.DatedMoneySpecification.StartDate">
+            <summary>
+            Date - The start date and time of the item (in ISO 8601 date format).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.GeoCoordinates">
+            <summary>
+            The geographic coordinates of a place or event.
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.StructuredValue.GeoCoordinates.Latitude">
+            <summary>
+            Text  or Number - The latitude of a location. For example 37.42242.
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.StructuredValue.GeoCoordinates.Longitude">
+            <summary>
+            Text  or Number - The longitude of a location. For example -122.08585.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoCoordinates.Elevation">
+            <summary>
+            Text  or Number - The elevation of a location.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.GeoShape">
+            <summary>
+            The geographic shape of a place.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoShape.Box">
+            <summary>
+            Text 	A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same. A polygon is expressed as a series of four or more space delimited points where the first and final points are identical.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoShape.Circle">
+            <summary>
+            Text 	A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoShape.Elevation">
+            <summary>
+            Text  or Number - The elevation of a location.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoShape.Line">
+            <summary>
+            Text 	A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.GeoShape.Polygon">
+            <summary>
+            Text 	A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same. A polygon is expressed as a series of four or more space delimited points where the first and final points are identical.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.ItemAvailability">
+            <summary>
+            A list of possible product availability options.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.OwnershipInfo">
+            <summary>
+            A structured value providing information about when a certain organization or person owned a certain product
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OwnershipInfo.AcquiredFrom">
+            <summary>
+            Organization  or  Person - The organization or person from which the product was acquired.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OwnershipInfo.OwnedFrom">
+            <summary>
+            DateTime - The date and time of obtaining the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OwnershipInfo.OwnedThrough">
+            <summary>
+            DateTime - The date and time of giving up ownership on the product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OwnershipInfo.TypeOfGood">
+            <summary>
+            Product - The product that this structured value is referring to.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.PropertyValue">
+            <summary>
+            A property-value pair, e.g. representing a feature of a product or place. Use the 'name' property for the name of the property. 
+            If there is an additional human-readable version of the value, put that into the 'description' property. 
+            Always use specific schema.org properties when a) they exist and b) you can populate them. 
+            Using PropertyValue as a substitute will typically not trigger the same effect as using the original, specific property.
+            </summary>
+        </member>
+        <member name="M:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.#ctor(System.String,System.Object)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.MaxValue">
+            <summary>
+            Number - The upper value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.MinValue">
+            <summary>
+            Number - The lower value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.PropertyID">
+            <summary>
+            URL  or Text - A commonly used identifier for the characteristic represented by the property, e.g. a manufacturer or a standard code for a property. propertyID can be (1) a prefixed string, mainly meant to be used with standards for product properties; (2) a site-specific, non-prefixed string (e.g. the primary key of the property or the vendor-specific id of the property), or (3) a URL indicating the type of the property, either pointing to an external vocabulary, or a Web resource that describes the property (e.g. a glossary entry). Standards bodies should promote a standard prefix for the identifiers of properties from their standards.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.UnitCode">
+            <summary>
+             URL  or Text 	The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.UnitText">
+            <summary>
+            Text - A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.Value">
+            <summary>
+            Text  or StructuredValue  or Number  or Boolean - The value of the quantitative value or property value node. For QuantitativeValue, the recommended type for values is 'Number'. For PropertyValue, it can be 'Text;', 'Number', 'Boolean', or 'StructuredValue'.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.PropertyValue.ValueReference">
+            <summary>
+            QualitativeValue  or QuantitativeValue  or PropertyValue  or Enumeration  or  StructuredValue - A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.DateIssued">
+            <summary>
+            DateTime - The date the ticket was issued.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.IssuedBy">
+            <summary>
+            Organization 	The organization issuing the ticket or permit.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.PriceCurrency">
+            <summary>
+            Text - The currency (in 3-letter ISO 4217 format) of the price or a price component, when attached to PriceSpecification and its subtypes.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.TicketNumber">
+            <summary>
+            Text - The unique identifier for the ticket.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.TicketToken">
+            <summary>
+            Text  or URL - Reference to an asset (e.g., Barcode, QR code image or PDF) usable for entrance.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.TicketedSeat">
+            <summary>
+            Seat - The seat associated with the ticket.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.TotalPrice">
+            <summary>
+            Text  or  PriceSpecification  or  Number 	The total price for the reservation or ticket, including applicable taxes, shipping, etc.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.Ticket.UnderName">
+            <summary>
+            Organization  or Person - The person or organization the reservation or ticket is for.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.InteractAction">
+            <summary>
+            The act of interacting with another person or organization.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Language">
+            <summary>
+            Natural languages such as Spanish, Tamil, Hindi, English, etc. and programming languages such as Scheme and Lisp.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.ListItem">
+            <summary>
+            An list item, e.g. a step in a checklist or how-to description.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ListItem.Item">
+            <summary>
+            Thing - An entity represented by an entry in a list (e.g. an 'artist' in a list of 'artists')’.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ListItem.NextItem">
+            <summary>
+            ListItem - A link to the ListItem that follows the current one.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ListItem.Position">
+            <summary>
+            Integer or Text - The position of an item in a series or sequence of items.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.ListItem.PreviousItem">
+            <summary>
+            ListItem - A link to the ListItem that preceeds the current one.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.LoseAction">
+            <summary>
+            The act of being defeated in a competitive activity.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.LoseAction.Winner">
+            <summary>
+            Person - A sub property of participant. The winner of the action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Map">
+            <summary>
+            A map.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Map.MapType">
+            <summary>
+            MapCategoryType - Indicates the kind of Map, from the MapCategoryType Enumeration.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.MapCategoryType">
+            <summary>
+            An enumeration of several kinds of Map
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.OfferItemCondition">
+            <summary>
+            A list of possible conditions for the item.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification">
+            <summary>
+            A structured value providing information about the opening hours of a place or a certain service inside a place.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification.Closes">
+            <summary>
+            Time - The closing hour of the place or service on the given day(s) of the week.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification.DayOfWeek">
+            <summary>
+            DayOfWeek 	The day of the week for which these opening hours are valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification.Opens">
+            <summary>
+            Time - The opening hour of the place or service on the given day(s) of the week.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification.ValidFrom">
+            <summary>
+            DateTime - The date when the item becomes valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.OpeningHoursSpecification.ValidThrough">
+            <summary>
+            DateTime - The end of the validity of offer, price specification, or opening hours data.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.MoveAction">
+            <summary>
+            The act of an agent relocating to a place. 
+            Related actions: 
+            <code>TransferAction</code>: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MoveAction.FromLocation">
+            <summary>
+            Place - A sub property of location. The original location of the object or the agent before the action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.MoveAction.ToLocation">
+            <summary>
+            Place - A sub property of location. The final location of the object or the agent after the action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.PaymentMethod">
+            <summary>
+            A payment method is a standardized procedure for transferring the monetary amount for a purchase. 
+            Payment methods are characterized by the legal and technical structures used, and by the organization or 
+            group carrying out the transaction. Commonly used values: 
+            http://purl.org/goodrelations/v1#ByBankTransferInAdvance 
+            http://purl.org/goodrelations/v1#ByInvoice 
+            http://purl.org/goodrelations/v1#Cash 
+            http://purl.org/goodrelations/v1#CheckInAdvance 
+            http://purl.org/goodrelations/v1#COD 
+            http://purl.org/goodrelations/v1#DirectDebit 
+            http://purl.org/goodrelations/v1#GoogleCheckout 
+            http://purl.org/goodrelations/v1#PayPal 
+            http://purl.org/goodrelations/v1#PaySwarm
+            </summary>
+        </member>
+        <member name="F:MXTires.Microdata.Intangible.Enumeration.PaymentMethod.CreditCard">
+            <summary>
+            A credit or debit card type as a standardized procedure for transferring the monetary amount for a purchase. 
+            Commonly used values: http://purl.org/goodrelations/v1#AmericanExpress http://purl.org/goodrelations/v1#DinersClub 
+            http://purl.org/goodrelations/v1#Discover http://purl.org/goodrelations/v1#JCB 
+            http://purl.org/goodrelations/v1#MasterCard http://purl.org/goodrelations/v1#VISA
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.OrganizeAction">
+            <summary>
+            The act of manipulating/administering/supervising/controlling one or more objects.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.PlayAction">
+            <summary>
+            The act of playing/exercising/training/performing for enjoyment, leisure, recreation, Competition or exercise. 
+            Related actions: 
+            <list type="bullet">
+            <item>
+                <description>
+                    <code>ListenAction</code>: Unlike ListenAction (which is under ConsumeAction), PlayAction refers to performing for an audience or at an event, rather than consuming music.
+                </description>
+            </item>
+            <item>
+                <description>
+                    <code>WatchAction</code>: Unlike WatchAction (which is under ConsumeAction), PlayAction refers to showing/displaying for an audience or at an event, rather than consuming visual content
+                </description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PlayAction.Audience">
+            <summary>
+            Audience - The intended audience of the item, i.e. the group for whom the item was created.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PlayAction.Event">
+            <summary>
+            Event - Upcoming or past event associated with this place, organization, or action. Supersedes events.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.PostalAddress">
+            <summary>
+            The mailing address.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.AddressCountry">
+            <summary>
+            Country - The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.AddressLocality">
+            <summary>
+            Text - The locality. For example, Mountain View.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.AddressRegion">
+            <summary>
+            Text - The region. For example, CA.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.PostOfficeBoxNumber">
+            <summary>
+            Text - The post office box number for PO box addresses.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.PostalCode">
+            <summary>
+            Text - The postal code. For example, 94043.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PostalAddress.StreetAddress">
+            <summary>
+            Text - The street address. For example, 1600 Amphitheatre Pkwy.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.maxPrice">
+            <summary>
+            Number 	The highest price if the price is a range.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.minPrice">
+            <summary>
+            Number 	The lowest price if the price is a range.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.price">
+            <summary>
+            Number  or Text. The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes. 
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.PriceCurrency">
+            <summary>
+            Text. The currency (in 3-letter ISO 4217 format) of the price or a price component, when attached to PriceSpecification and its subtypes.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.validFrom">
+            <summary>
+            The date when the item becomes valid.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.validThrough">
+            <summary>
+            The end of the validity of offer, price specification, or opening hours data.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.PriceSpecification.valueAddedTaxIncluded">
+            <summary>
+            Boolean 	Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ProductModel.isVariantOf">
+            <summary>
+            A pointer to a base product from which this product is a variant. 
+            It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ProductModel.predecessorOf">
+            <summary>
+            A pointer from a previous, often discontinued variant of the product to its newer variant.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.ProductModel.successorOf">
+            <summary>
+            A pointer from a newer variant of a product to its previous, often discontinued predecessor.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.QuantitativeValue.MaxValue">
+            <summary>
+            Number 	The upper value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.QuantitativeValue.MinValue">
+            <summary>
+            Number 	The lower value of some characteristic or property.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.QuantitativeValue.UnitCode">
+            <summary>
+            Text -The unit of measurement given using the UN/CEFACT Common Code (3 characters).
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.QuantitativeValue.Value">
+            <summary>
+            Number 	The value of the product characteristic.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.QuantitativeValue.ValueReference">
+            <summary>
+            Enumeration  or StructuredValue 	A pointer to a secondary value that provides additional information on the original value, e.g. a reference temperature.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Question.AcceptedAnswer">
+            <summary>
+            Answer 	The answer that has been accepted as best, typically on a Question/Answer site. Sites vary in their selection mechanisms, e.g. drawing on community opinion and/or the view of the Question author.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Question.AnswerCount">
+            <summary>
+            Integer 	The number of answers this question has received.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Question.DownvoteCount">
+            <summary>
+            Integer 	The number of downvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Question.SuggestedAnswer">
+            <summary>
+            Answer 	An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Question.UpvoteCount">
+            <summary>
+            	Integer 	The number of upvotes this question has received from the community.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Review">
+            <summary>
+            A review of an item - for example, of a restaurant, movie, or store.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Review.ItemReviewed">
+            <summary>
+            Thing 	The item that is being reviewed/rated.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Review.ReviewBody">
+            <summary>
+            Text - The actual body of the review.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Review.ReviewRating">
+            <summary>
+            Rating 	The rating given in this review. Note that reviews can themselves be rated. 
+            The reviewRating applies to rating given by the review. The aggregateRating property applies to the review itself, as a creative work.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.SearchAction">
+            <summary>
+            The act of searching for an object.
+            Related actions:
+            <code>FindAction</code>: SearchAction generally leads to a FindAction, but not necessarily
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.SearchAction.Query">
+            <summary>
+            Class  or Text - A sub property of instrument. The query used on this action.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.SearchAction.QueryInput">
+            <summary>
+            PropertyValueSpecification - A sub property of instrument. The query used on this action.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.TieAction">
+            <summary>
+            The act of reaching a draw in a competitive activity.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.TypeAndQuantityNode">
+            <summary>
+            A structured value indicating the quantity, unit of measurement, and business function of goods included in a bundle offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.TypeAndQuantityNode.AmountOfThisGood">
+            <summary>
+            Number 	The quantity of the goods included in the offer.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.TypeAndQuantityNode.BusinessFunction">
+            <summary>
+            BusinessFunction - The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.TypeAndQuantityNode.TypeOfGood">
+            <summary>
+            Product 	The product that this structured value is referring to.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.TypeAndQuantityNode.UnitCode">
+            <summary>
+            Text - The unit of measurement given using the UN/CEFACT Common Code (3 characters).
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.TradeAction">
+            <summary>
+            The act of participating in an exchange of goods and services for monetary compensation. An agent trades an object, product or service with a participant in exchange for a one time or periodic payment.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.TradeAction.Price">
+            <summary>
+            Text  or Number - The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes. 
+            Usage guidelines:
+            <list type="bullet">
+            <item>
+            <description>
+                Use the priceCurrency property (with ISO 4217 codes e.g. "USD") instead of including ambiguous symbols such as '$' in the value.
+            </description>
+            </item>
+            <item>
+            <description>
+                Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.
+            </description>
+            </item>
+            <item>
+            <description>
+                Note that both RDFa and Microdata syntax allow the use of a "content=" attribute for publishing simple machine-readable values alongside more human-friendly formatting.
+            </description>
+            </item>
+            <item>
+            <description>
+                Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.
+            </description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.TradeAction.PriceSpecification">
+            <summary>
+            PriceSpecification - One or more detailed price specifications, indicating the unit price and delivery or payment charges.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.StructuredValue.WarrantyPromise">
+            <summary>
+            A structured value representing the duration and scope of services that will be provided to a customer free of charge in case of a defect or malfunction of a product.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.WarrantyPromise.DurationOfWarranty">
+            <summary>
+            QuantitativeValue 	The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.
+            </summary>
+        </member>
+        <member name="P:MXTires.Microdata.Intangible.StructuredValue.WarrantyPromise.WarrantyScope">
+            <summary>
+            WarrantyScope 	The scope of the warranty promise.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.Intangible.Enumeration.WarrantyScope">
+            <summary>
+            A range of of services that will be provided to a customer free of charge in case of a defect or malfunction of a product. Commonly used values: http://purl.org/goodrelations/v1#Labor-BringIn http://purl.org/goodrelations/v1#PartsAndLabor-BringIn http://purl.org/goodrelations/v1#PartsAndLabor-PickUp
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.WebSite">
+            <summary>
+            A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs.
+            </summary>
+        </member>
+        <member name="T:MXTires.Microdata.WinAction">
+            <summary>
+            The act of achieving victory in a competitive activity.
+            </summary>
+        </member>
+    </members>
+</doc>
