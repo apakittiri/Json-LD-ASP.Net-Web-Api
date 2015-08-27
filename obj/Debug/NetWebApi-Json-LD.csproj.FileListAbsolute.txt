@@ -63,3 +63,4 @@ C:\MyProjects\NetWebApi-Json-LD\NetWebApi-Json-LD\bin\VDS.Common.xml
 C:\MyProjects\NetWebApi-Json-LD\NetWebApi-Json-LD\bin\Antlr3.Runtime.pdb
 C:\MyProjects\NetWebApi-Json-LD\NetWebApi-Json-LD\obj\Debug\NetWebApi-Json-LD.dll
 C:\MyProjects\NetWebApi-Json-LD\NetWebApi-Json-LD\obj\Debug\NetWebApi-Json-LD.pdb
+C:\MyProjects\NetWebApi-Json-LD\NetWebApi-Json-LD\obj\Debug\NetWebApi-Json-LD.csprojResolveAssemblyReference.cache
