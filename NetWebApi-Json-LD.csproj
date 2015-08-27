@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Neo4J_Worker_Data\Worker\index\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -226,6 +227,50 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Neo4J_Worker_Data\Worker\dbms\auth" />
+    <Content Include="Neo4J_Worker_Data\Worker\lock" />
+    <Content Include="Neo4J_Worker_Data\Worker\messages.log" />
+    <Content Include="Neo4J_Worker_Data\Worker\neo4j.properties" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.counts.db.a" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.counts.db.b" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.labeltokenstore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.labeltokenstore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.labeltokenstore.db.names" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.labeltokenstore.db.names.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.nodestore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.nodestore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.nodestore.db.labels" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.nodestore.db.labels.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.arrays" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.arrays.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.index" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.index.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.index.keys" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.index.keys.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.strings" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.propertystore.db.strings.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshipgroupstore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshipgroupstore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshipstore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshipstore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshiptypestore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshiptypestore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshiptypestore.db.names" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.relationshiptypestore.db.names.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.schemastore.db" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.schemastore.db.id" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.transaction.db.0" />
+    <Content Include="Neo4J_Worker_Data\Worker\neostore.transaction.db.1" />
+    <Content Include="Neo4J_Worker_Data\Worker\rrd" />
+    <Content Include="Neo4J_Worker_Data\Worker\schema\label\lucene\segments.gen" />
+    <Content Include="Neo4J_Worker_Data\Worker\schema\label\lucene\segments_1" />
+    <Content Include="Neo4J_Worker_Data\Worker\schema\label\lucene\write.lock" />
+    <Content Include="Neo4J_Worker_Data\Worker\schema\label\lucene\_h.cfs" />
+    <Content Include="Neo4J_Worker_Data\Worker\store_lock" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
